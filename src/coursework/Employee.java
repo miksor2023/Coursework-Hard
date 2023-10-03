@@ -3,7 +3,7 @@ package coursework;
 import java.util.Locale;
 
 public class Employee {
-    private String name;
+    private final String name;
     private int department;
     private double salary;
     private int id;
