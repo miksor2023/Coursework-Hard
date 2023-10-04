@@ -29,7 +29,7 @@ public class EmployeeBook {
         for (int i = 0; i < subArraySize; i++) {
             System.out.println(subArray[i]);
         }
-        System.out.println("Заполненный ячеек: " + subArraySize);
+        System.out.println("Всего заполненных полей: " + subArraySize);
     }
     //метод "добавить сотрудника"
     public void addEmployee(String name, int department, double salary) {
@@ -38,6 +38,7 @@ public class EmployeeBook {
             if (employees[i] == null) {
                 Employee newEmloyee = new Employee(name, department, salary);
                 employees[i] = newEmloyee;
+                System.out.println("Запись о сотруднике " + employees[i].getName() + " ДОБАВЛЕНА");
                 flagEmployeeAdded = 1;
                 break;
             }
@@ -53,6 +54,7 @@ public class EmployeeBook {
                if (employees[i].getId() == id) {
                    System.out.println("\nЗапись о сотруднике " + employees[i].getName() + " УДАЛЕНА");
                    employees[i] = null;
+                   break;
                }
            }
        }
@@ -140,22 +142,22 @@ public class EmployeeBook {
         }
         return deptEmployeesModified;
     }
-    //метод "вывести в консоль список сотрудников по заданному отделу"
+    //служебный метод "вывести в консоль список сотрудников по заданному отделу"
     public void printDepartmentEmployeeList(int department) {
-        Employee[] deptEmploees = makeDepartmentArray(department);
-        if (deptEmploees.length != 0) {//проверка на пустой отдел
-            System.out.println("\nСписок сотрудников " + department + " отдела");
-            for (int i = 0; i < deptEmploees.length; i++) {
-                System.out.printf(Locale.US, "Ф.И.О.: " + deptEmploees[i].getName() +
-                        "; зарплата: %.2fр.; id: " + deptEmploees[i].getId() + "\n", deptEmploees[i].getSalary());
-            }
-        } else {
-            System.out.println("В базе нет сотрудников из отдела " + department);
+        Employee[] deptEmployees = makeDepartmentArray(department);
+        System.out.println("\nСписок сотрудников " + department + " отдела");
+        for (int i = 0; i < deptEmployees.length; i++) {
+            System.out.printf(Locale.US, "Ф.И.О.: " + deptEmployees[i].getName() +
+                    "; зарплата: %.2fр.; id: " + deptEmployees[i].getId() +
+                    "\n", deptEmployees[i].getSalary());
+        }
+        if (deptEmployees.length == 0) {
+            System.out.println("В отделе нет сотрудников");
         }
     }
 
     //метод "ищем сотрудника с минимальной зарплатой по отделу"
-    public void printMinSalaryEmploeeInDept(int department) {
+    public void printMinSalaryEmployeeInDept(int department) {
         Employee[] deptEmployees = makeDepartmentArray(department);
         if (deptEmployees.length != 0) {//проверка на пустой отдел
             double minSalary = deptEmployees[0].getSalary();
@@ -257,6 +259,31 @@ public class EmployeeBook {
             if (subArray[i].getSalary() >= edgeSalary) {
                 System.out.printf(Locale.US, "id: " + subArray[i].getId() + "; Ф.И.О.: " +
                         subArray[i].getName() + "; зарплата: %.2fр.\n", subArray[i].getSalary());
+            }
+        }
+    }
+    //метод изменить сотрудника
+    public void modifyEmployee(String name, int department, int salary) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {//проверка на пустую ячейку
+                if (employees[i].getName().equals(name)) {
+                    employees[i].setDepartment(department);
+                    employees[i].setSalary(salary);
+                }
+            }
+        }
+    }
+    //метод "напечатать список отделов и их сотрудников"
+    public void printEployeeListByDepartments() {
+        System.out.println("Cписок сотрудников по каждому отделу: ");
+        for (int department = 1; department <= 5; department++) {
+            Employee[] deptEmployees = makeDepartmentArray(department);
+            System.out.println("\nСписок сотрудников " + department + " отдела");
+            for (int i = 0; i < deptEmployees.length; i++) {
+                System.out.println("Ф.И.О.: " + deptEmployees[i].getName());
+            }
+            if (deptEmployees.length == 0) {
+                System.out.println("В отделе нет сотрудников");
             }
         }
     }
