@@ -275,7 +275,7 @@ public class EmployeeBook {
     }
     //метод "напечатать список отделов и их сотрудников"
     public void printEployeeListByDepartments() {
-        System.out.println("Cписок сотрудников по каждому отделу: ");
+        System.out.println("\nCписок сотрудников по отделам: ");
         for (int department = 1; department <= 5; department++) {
             Employee[] deptEmployees = makeDepartmentArray(department);
             System.out.println("\nСписок сотрудников " + department + " отдела");
