@@ -31,8 +31,11 @@ public class Main {
         //выводим список всех заполненных полей книги сотрудников без null-полей
         employeeBook.printEmployeeListWithoutNull();
 
-        //добавляем сотрудника (запись делается в пустую ячейку)
+        //добавляем сотрудников (запись делается в пустые ячейку)
         employeeBook.addEmployee("Новиков Любомир Евгеньевич", 4, 56870);
+        employeeBook.addEmployee("Носков Павел Леонидович", 2, 48700);
+        employeeBook.addEmployee("Шубин Илларион Геннадиевич", 3, 30500);
+
         //выводим список всех заполненных полей книги сотрудников без null-полей
         employeeBook.printEmployeeListWithoutNull();
 
