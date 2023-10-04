@@ -50,6 +50,7 @@ public class Employee {
                 "; отдел: " + department +
                 "; зарплата: %.2fр.; id: " + id, salary);
     }
+
 }
 
 
